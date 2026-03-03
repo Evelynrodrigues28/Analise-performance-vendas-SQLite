@@ -8,8 +8,8 @@ Projeto de análise de dados com foco em performance de vendas, utilizando SQLit
 1. [Objetivo](#Objetivo)
 2. [Dados Utilizados](#Dados-Utilizados)
 3. [Consultas SQL Desenvolvidas](#Consultas-SQL-Desenvolvidas)
-4. 
-5. [Recomendação Final](#Recomendação-Final)
+4. [Resultados](#Resultados)
+5. [Tecnologias Utilizadas](#Tecnologias-Utilizadas)
 
 ---
 ## Objetivo
@@ -70,12 +70,13 @@ Contendo as colunas : IDDistribuidor, Cliente, TamanhoLoja, QuantidadeVendida, V
 <img width="661" height="392" alt="image" src="https://github.com/user-attachments/assets/c63cf07f-64bf-427a-a415-836c509abff9" />
 
 
+## Resultados
 
+Após as consultas realizadas:
 
-## Recomendação Final
+Todas as distribuidos possuem a mesma quantidade de clientes únicos.
+A Distribuidora Alfa apresentou o maior valor total de vendas.
 
-A Distribuidora Delta se destacou, liderando tanto em valor total de vendas quanto em quantidade de produtos vendidos.
+## Tecnologias Utilizadas
 
-Apesar disso, os dados mostram que o desempenho entre os distribuidores está relativamente equilibrado.
-
-Como próximo passo, vale buscar estratégias para impulsionar os parceiros com menor valor e quantidade de vendas.
+* VS Code com extensão SQLite
