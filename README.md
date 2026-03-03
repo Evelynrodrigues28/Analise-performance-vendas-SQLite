@@ -44,57 +44,21 @@ Contendo as colunas : IDDistribuidor, Cliente, TamanhoLoja, QuantidadeVendida, V
 
 # Número de clientes únicos atendidos por cada distribuidor
 
--- Seleciona as colunas que aparecerão no resultado
-SELECT
-    d.NomeDistribuidor AS distribuidor,         -- Nome do distribuidor
-    COUNT(DISTINCT v.Cliente) AS clientes_unicos -- Clientes únicos por distribuidor
-FROM Distribuidor d                             -- Tabela Distribuidor
-LEFT JOIN Vendas v                              -- Une com a tabela Vendas
-       ON v.IDDistribuidor = d.ID               -- Chave de ligação entre as tabelas
-GROUP BY d.NomeDistribuidor                     -- Agrupa por distribuidor
-ORDER BY clientes_unicos DESC;                  -- Ordena do maior para o menor
+<img width="957" height="445" alt="image" src="https://github.com/user-attachments/assets/88edb8fe-0d33-4347-84c7-11843a777965" />
+
 
 
 # número de clientes únicos atendidos por cada distribuidor, considerando o tamanho da loja
 
--- Seleciona as colunas que aparecerão no resultado
-SELECT
-    -- Nome do distribuidor
-    d.NomeDistribuidor AS distribuidor,
-    -- Conta combinações distintas de Cliente + TamanhoLoja
-    COUNT(DISTINCT (v.Cliente || '|' || v.TamanhoLoja))
-        AS clientes_unicos
--- Lista todos os distribuidores da tabela Distribuidor
-FROM Distribuidor AS d
--- Une as vendas com o Distribuidor usando um LEFT JOIN para incluir distribuidores sem vendas
-LEFT JOIN Vendas AS v
-       ON v.IDDistribuidor = d.ID
--- Agrupa para calcular por distribuidor
-GROUP BY d.NomeDistribuidor
--- Ordena do maior para o menor
-ORDER BY clientes_unicos DESC;
+<img width="962" height="401" alt="image" src="https://github.com/user-attachments/assets/46ab0c76-b405-428f-9d97-7be32586670e" />
+
 
 
 
 # Identifique qual distribuidor possui o maior número de clientes únicos
 
--- Seleciona o nome do distribuidor
-SELECT
-    d.NomeDistribuidor AS distribuidor, 
--- Conta clientes distintos por distribuidor
-    COUNT(DISTINCT v.Cliente) AS clientes_unicos
--- Lista todos os distribuidores da tabela Distribuidor
-FROM Distribuidor d
--- Junta as vendas correspondentes a cada distribuidor
-LEFT JOIN Vendas v
--- Comparação de chaves para unir as tabelas
-       ON v.IDDistribuidor = d.ID
--- Agrupa por distribuidor
-GROUP BY d.NomeDistribuidor
--- Ordena para que o maior número fique em primeiro
-ORDER BY clientes_unicos DESC
--- Pega somente o distribuidor com mais clientes
-LIMIT 5;
+<img width="592" height="432" alt="image" src="https://github.com/user-attachments/assets/d329b4c1-8d56-4ee2-a9aa-782ea8cda683" />
+
 
 
 # Identifique qual distribuidor possui o maior número de clientes únicos considerando o tamanho da loja
