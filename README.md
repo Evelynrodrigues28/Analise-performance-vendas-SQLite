@@ -42,26 +42,17 @@ Contendo as colunas : IDDistribuidor, Cliente, TamanhoLoja, QuantidadeVendida, V
 ## Consultas SQL Desenvolvidas
 
 
-# número de clientes únicos atendidos por cada distribuidor
+# Número de clientes únicos atendidos por cada distribuidor
 
 -- Seleciona as colunas que aparecerão no resultado
 SELECT
--- Seleciona Nome do distribuidor
-    d.NomeDistribuidor
-    AS distribuidor,
---Conta clientes distintos por distribuidor
-    COUNT(DISTINCT v.Cliente)
-    AS clientes_unicos
--- Lista todos os distribuidores da tabela Distribuidor
-FROM Distribuidor AS d
--- Une as vendas com o Distribuidor usando um LEFT JOIN para incluir distribuidores sem vendas
-LEFT JOIN Vendas AS v
--- Comparação de chaves para unir as tabelas
-       ON v.IDDistribuidor = d.ID   
--- Agrupa por distribuidor
-GROUP BY d.NomeDistribuidor
--- Ordena do maior para o menor número de clientes únicos
-ORDER BY clientes_unicos DESC;
+    d.NomeDistribuidor AS distribuidor,         -- Nome do distribuidor
+    COUNT(DISTINCT v.Cliente) AS clientes_unicos -- Clientes únicos por distribuidor
+FROM Distribuidor d                             -- Tabela Distribuidor
+LEFT JOIN Vendas v                              -- Une com a tabela Vendas
+       ON v.IDDistribuidor = d.ID               -- Chave de ligação entre as tabelas
+GROUP BY d.NomeDistribuidor                     -- Agrupa por distribuidor
+ORDER BY clientes_unicos DESC;                  -- Ordena do maior para o menor
 
 
 # número de clientes únicos atendidos por cada distribuidor, considerando o tamanho da loja
