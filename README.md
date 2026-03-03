@@ -1,13 +1,15 @@
-# 📊 Análise de Performance de Vendas
+# 📊 Análise de Performance de Vendas SQLite
 
-Projeto de análise de dados com foco em performance de vendas, utilizando Python e bibliotecas de análise de dados.
+Projeto de análise de dados com foco em performance de vendas, utilizando SQLite
 
 ---
 
 ## Sumário
 1. [Objetivo](#Objetivo)
 2. [Dados Utilizados](#Dados-Utilizados)
-3. [Recomendação Final](#Recomendação-Final)
+3. [Consultas SQL Desenvolvidas](#Consultas-SQL-Desenvolvidas)
+4. 
+5. [Recomendação Final](#Recomendação-Final)
 
 ---
 ## Objetivo
@@ -36,6 +38,114 @@ Contendo as colunas : IDDistribuidor, Cliente, TamanhoLoja, QuantidadeVendida, V
 <img width="692" height="385" alt="image" src="https://github.com/user-attachments/assets/76d52cc4-36f3-44c5-a9e6-835d5e4ac904" />
 
 ---
+
+## Consultas SQL Desenvolvidas
+
+
+# número de clientes únicos atendidos por cada distribuidor
+
+-- Seleciona as colunas que aparecerão no resultado
+SELECT
+-- Seleciona Nome do distribuidor
+    d.NomeDistribuidor
+    AS distribuidor,
+--Conta clientes distintos por distribuidor
+    COUNT(DISTINCT v.Cliente)
+    AS clientes_unicos
+-- Lista todos os distribuidores da tabela Distribuidor
+FROM Distribuidor AS d
+-- Une as vendas com o Distribuidor usando um LEFT JOIN para incluir distribuidores sem vendas
+LEFT JOIN Vendas AS v
+-- Comparação de chaves para unir as tabelas
+       ON v.IDDistribuidor = d.ID   
+-- Agrupa por distribuidor
+GROUP BY d.NomeDistribuidor
+-- Ordena do maior para o menor número de clientes únicos
+ORDER BY clientes_unicos DESC;
+
+
+# número de clientes únicos atendidos por cada distribuidor, considerando o tamanho da loja
+
+-- Seleciona as colunas que aparecerão no resultado
+SELECT
+    -- Nome do distribuidor
+    d.NomeDistribuidor AS distribuidor,
+    -- Conta combinações distintas de Cliente + TamanhoLoja
+    COUNT(DISTINCT (v.Cliente || '|' || v.TamanhoLoja))
+        AS clientes_unicos
+-- Lista todos os distribuidores da tabela Distribuidor
+FROM Distribuidor AS d
+-- Une as vendas com o Distribuidor usando um LEFT JOIN para incluir distribuidores sem vendas
+LEFT JOIN Vendas AS v
+       ON v.IDDistribuidor = d.ID
+-- Agrupa para calcular por distribuidor
+GROUP BY d.NomeDistribuidor
+-- Ordena do maior para o menor
+ORDER BY clientes_unicos DESC;
+
+
+
+# Identifique qual distribuidor possui o maior número de clientes únicos
+
+-- Seleciona o nome do distribuidor
+SELECT
+    d.NomeDistribuidor AS distribuidor, 
+-- Conta clientes distintos por distribuidor
+    COUNT(DISTINCT v.Cliente) AS clientes_unicos
+-- Lista todos os distribuidores da tabela Distribuidor
+FROM Distribuidor d
+-- Junta as vendas correspondentes a cada distribuidor
+LEFT JOIN Vendas v
+-- Comparação de chaves para unir as tabelas
+       ON v.IDDistribuidor = d.ID
+-- Agrupa por distribuidor
+GROUP BY d.NomeDistribuidor
+-- Ordena para que o maior número fique em primeiro
+ORDER BY clientes_unicos DESC
+-- Pega somente o distribuidor com mais clientes
+LIMIT 5;
+
+
+# Identifique qual distribuidor possui o maior número de clientes únicos considerando o tamanho da loja
+
+-- Seleciona o nome do distribuidor
+SELECT
+    d.NomeDistribuidor AS distribuidor, 
+-- Conta clientes distintos por distribuidor
+    COUNT(DISTINCT (v.Cliente || '|' || v.TamanhoLoja)) AS clientes_unicos
+-- Lista todos os distribuidores da tabela Distribuidor
+FROM Distribuidor d
+-- Junta as vendas correspondentes a cada distribuidor
+LEFT JOIN Vendas v
+-- Comparação de chaves para unir as tabelas
+       ON v.IDDistribuidor = d.ID
+-- Agrupa por distribuidor
+GROUP BY d.NomeDistribuidor
+-- Ordena para que o maior número fique em primeiro
+ORDER BY clientes_unicos DESC
+-- Pega somente o distribuidor com mais clientes
+LIMIT 5;
+
+
+#  Total de vendas (valor) por distribuidor
+
+-- Seleciona as informações que queremos no resultado
+SELECT
+-- Nome do distribuidor
+    d.NomeDistribuidor AS distribuidor,
+-- Soma de valor por distribuidor
+    SUM(v.ValorVendido) AS total_vendas   
+-- Lista tabela Distribuidor
+FROM Distribuidor d
+-- Comparação de chaves para unir as tabelas
+LEFT JOIN Vendas v
+       ON v.IDDistribuidor = d.ID 
+-- Agrupa por distribuidor
+GROUP BY d.NomeDistribuidor
+-- Ordena os distribuidores do maior para o menor total de vendas
+ORDER BY total_vendas DESC;
+
+
 
 ## Recomendação Final
 
