@@ -1,0 +1,2 @@
+# Analise-performance-vendas-SQLite
+.
