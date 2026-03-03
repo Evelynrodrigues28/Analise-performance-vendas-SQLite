@@ -44,14 +44,13 @@ Contendo as colunas : IDDistribuidor, Cliente, TamanhoLoja, QuantidadeVendida, V
 
 # Número de clientes únicos atendidos por cada distribuidor
 
-<img width="957" height="445" alt="image" src="https://github.com/user-attachments/assets/88edb8fe-0d33-4347-84c7-11843a777965" />
+<img width="933" height="417" alt="image" src="https://github.com/user-attachments/assets/5e56bcab-ea51-46c9-a2fe-8856b0d4d83b" />
 
 
 
-# número de clientes únicos atendidos por cada distribuidor, considerando o tamanho da loja
+# Número de clientes únicos atendidos por cada distribuidor, considerando o tamanho da loja
 
-<img width="962" height="401" alt="image" src="https://github.com/user-attachments/assets/46ab0c76-b405-428f-9d97-7be32586670e" />
-
+<img width="956" height="393" alt="image" src="https://github.com/user-attachments/assets/9f4a472a-c5e7-4d27-8cc9-f3d2c688b876" />
 
 
 
@@ -63,42 +62,13 @@ Contendo as colunas : IDDistribuidor, Cliente, TamanhoLoja, QuantidadeVendida, V
 
 # Identifique qual distribuidor possui o maior número de clientes únicos considerando o tamanho da loja
 
--- Seleciona o nome do distribuidor
-SELECT
-    d.NomeDistribuidor AS distribuidor, 
--- Conta clientes distintos por distribuidor
-    COUNT(DISTINCT (v.Cliente || '|' || v.TamanhoLoja)) AS clientes_unicos
--- Lista todos os distribuidores da tabela Distribuidor
-FROM Distribuidor d
--- Junta as vendas correspondentes a cada distribuidor
-LEFT JOIN Vendas v
--- Comparação de chaves para unir as tabelas
-       ON v.IDDistribuidor = d.ID
--- Agrupa por distribuidor
-GROUP BY d.NomeDistribuidor
--- Ordena para que o maior número fique em primeiro
-ORDER BY clientes_unicos DESC
--- Pega somente o distribuidor com mais clientes
-LIMIT 5;
+<img width="742" height="418" alt="image" src="https://github.com/user-attachments/assets/c4355c1e-a436-46e6-aced-15869a12deb1" />
 
 
 #  Total de vendas (valor) por distribuidor
 
--- Seleciona as informações que queremos no resultado
-SELECT
--- Nome do distribuidor
-    d.NomeDistribuidor AS distribuidor,
--- Soma de valor por distribuidor
-    SUM(v.ValorVendido) AS total_vendas   
--- Lista tabela Distribuidor
-FROM Distribuidor d
--- Comparação de chaves para unir as tabelas
-LEFT JOIN Vendas v
-       ON v.IDDistribuidor = d.ID 
--- Agrupa por distribuidor
-GROUP BY d.NomeDistribuidor
--- Ordena os distribuidores do maior para o menor total de vendas
-ORDER BY total_vendas DESC;
+<img width="661" height="392" alt="image" src="https://github.com/user-attachments/assets/c63cf07f-64bf-427a-a415-836c509abff9" />
+
 
 
 
