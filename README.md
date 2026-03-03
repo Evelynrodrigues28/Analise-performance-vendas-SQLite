@@ -74,7 +74,7 @@ Contendo as colunas : IDDistribuidor, Cliente, TamanhoLoja, QuantidadeVendida, V
 
 Após as consultas realizadas:
 
-Todas as distribuidos possuem a mesma quantidade de clientes únicos.
+Todas os distribuidores possuem a mesma quantidade de clientes únicos.
 A Distribuidora Alfa apresentou o maior valor total de vendas.
 
 ## Tecnologias Utilizadas
